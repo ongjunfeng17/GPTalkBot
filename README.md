@@ -19,6 +19,7 @@ Installation: No installation required! Just search for '@jfchatgpt_bot' on Tele
 * /start - Begin a new conversation.
 * /about - Get information on how to use the bot 🤖
 * /delete - Delete all uploaded files 🗑️
+* /generate_image: Generate image/s via prompts 
 * /prompt - Edit prompt given to me 📝
 * /temperature - Adjust the temperature setting 🌡️
 * /sources - Modify the number of sources I look through 🔍
@@ -35,6 +36,5 @@ Installation: No installation required! Just search for '@jfchatgpt_bot' on Tele
 Found a bug or have a feature request? Open an issue on our GitHub repository.
 
 ## Upcoming Features
-1. Image Generation
-2. Image Editing
-3. Code Generation
+1. Image Editing
+2. Code Generation

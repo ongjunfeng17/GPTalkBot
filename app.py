@@ -32,12 +32,12 @@ from aiogram.dispatcher import FSMContext
 from aiogram.dispatcher.filters.state import State, StatesGroup
 
 # environment setup
-OPENAI_API_KEY = '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'
-openai.api_key = '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'
-PINECONE_API_KEY = '8e752c78-4ad8-40ec-b60d-416f8c900c84'
-PINECONE_API_ENV = 'asia-southeast1-gcp-free'
-PINECONE_INDEX_NAME = 'chatgpt'
-BOT_API_KEY = '6345995665:AAEAa1-V2kAC-GeFhcqUGJl-0iCxb74YMi4'
+OPENAI_API_KEY = ''
+openai.api_key = ''
+PINECONE_API_KEY = ''
+PINECONE_API_ENV = ''
+PINECONE_INDEX_NAME = ''
+BOT_API_KEY = ''
 namespace_name = ''
 
 # initialise bot and openai

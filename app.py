@@ -32,12 +32,12 @@ from aiogram.dispatcher import FSMContext
 from aiogram.dispatcher.filters.state import State, StatesGroup
 
 # environment setup
-OPENAI_API_KEY = ''
-openai.api_key = ''
-PINECONE_API_KEY = ''
-PINECONE_API_ENV = ''
-PINECONE_INDEX_NAME = ''
-BOT_API_KEY = ''
+OPENAI_API_KEY = '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'
+openai.api_key = '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'
+PINECONE_API_KEY = '8e752c78-4ad8-40ec-b60d-416f8c900c84'
+PINECONE_API_ENV = 'asia-southeast1-gcp-free'
+PINECONE_INDEX_NAME = 'chatgpt'
+BOT_API_KEY = '6345995665:AAEAa1-V2kAC-GeFhcqUGJl-0iCxb74YMi4'
 namespace_name = ''
 
 # initialise bot and openai
@@ -48,7 +48,7 @@ class Form(StatesGroup):
     temp = State()
     prompt = State()
     n_sources = State()
-
+    pic = State()
 
 storage = MemoryStorage()
 dp = Dispatcher(bot, storage=storage)
@@ -95,15 +95,17 @@ Here are some useful commands you may use to customize your user experience:
     
 /delete: Delete all uploaded files 🗑️
 
+/generate_image: Generate image/s via prompts 
+
 /prompt: Edit prompt given to me 📝
 
 /temperature: Adjust the temperature setting 🌡️
 
 /sources: Modify the number of sources I look through 🔍
 
-/settings: View all current settings & files uploaded 🔧
+/settings: View all current settings & files uploaded ⚙️
 
-/reset: Reset all settings to their default states ⚙️
+/reset: Reset all settings to their default states 
 
 /about: Use this to find out more about me! 🤖 
     """
@@ -149,6 +151,32 @@ async def cancel_handler(message: types.Message, state: 'FSMContext'):
     # Cancel state and inform user about it
     await state.finish()
     await message.reply('Command has been cancelled ❌')
+
+
+### /generate_image
+@dp.message_handler(commands=["generate_image"])
+async def prompt_for_image_description(message: types.Message):
+    await Form.pic.set()
+    # Ask the user for an image description
+    await message.reply("Please provide a description for the image you'd like to generate.\n\nWish to go back? Use /cancel.")
+
+@dp.message_handler(state=Form.pic)
+async def generate_image(message: types.Message, state: FSMContext):
+    loading_message = await message.answer(loading_statement)
+    await message.answer_chat_action("typing")
+    # Convert image data to an appropriate format if needed
+    # For this example, let's assume image_data is a raw image in PNG format
+    response = openai.Image.create(
+        prompt=message.text,
+        n=1,
+        size="1024x1024"
+    )
+    image_url = response['data'][0]['url']
+    #print(response['data'])
+
+    # Send the generated image back to the user
+    await bot.send_photo(message.chat.id, photo=image_url, caption=message.text)
+    await state.finish()
 
 
 ### /temperature
@@ -383,7 +411,7 @@ def cut_text_into_parts(text, max_length=4096):
     return parts
 
 
-### recieving messages
+### receiving messages
 @dp.message_handler()
 async def reply(message: types.Message):
     loading_message = await message.answer(loading_statement)

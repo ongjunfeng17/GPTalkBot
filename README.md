@@ -35,5 +35,6 @@ Installation: No installation required! Just search for '@jfchatgpt_bot' on Tele
 Found a bug or have a feature request? Open an issue on our GitHub repository.
 
 ## Upcoming Features
-1. Photo Generation
-2. Code Generation
+1. Image Generation
+2. Image Editing
+3. Code Generation

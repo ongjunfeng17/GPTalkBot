@@ -16,8 +16,8 @@ GPTalkBot leverages the power of GPT-4 to provide users with intelligent and dyn
 Installation: No installation required! Just search for '@jfchatgpt_bot' on Telegram and start chatting. 
 
 ## Commands:
-1. /start - Begin a new conversation.
-2. /about - Get information on how to use the bot 🤖
+* /start - Begin a new conversation.
+* /about - Get information on how to use the bot 🤖
 3. /delete - Delete all uploaded files 🗑️
 4. /prompt - Edit prompt given to me 📝
 5. /temperature - Adjust the temperature setting 🌡️
